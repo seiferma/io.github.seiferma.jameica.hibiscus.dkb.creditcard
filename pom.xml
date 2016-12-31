@@ -45,6 +45,8 @@
 		<project.build.sourceEncoding>ISO-8859-15</project.build.sourceEncoding>
 		<dependency.jameica.version>2.6.19</dependency.jameica.version>
 		<dependency.hibiscus.version>2.6.19</dependency.hibiscus.version>
+		
+		<maven.site.deploy.skip>true</maven.site.deploy.skip>
 
 		<plugin.file.name.without.extension>${project.artifactId}</plugin.file.name.without.extension>
 		<plugin.file.name.with.extension>${plugin.file.name.without.extension}.zip</plugin.file.name.with.extension>
@@ -237,6 +239,9 @@
 							<server>github-dkb</server>
 							<message>Updated site for version ${project.version}.</message>
 							<merge>true</merge>
+							<branch>refs/heads/gh-pages</branch>
+							<repositoryName>io.github.seiferma.jameica.hibiscus.dkb.creditcard</repositoryName>
+							<repositoryOwner>seiferma</repositoryOwner>
 						</configuration>
 					</execution>
 				</executions>
