@@ -1,0 +1,21 @@
+Installation
+====================
+The plugin can be installed via the commonly known plugin installation mechanism of Jameica.
+
+Automated Installation via Repository
+---------------------
+This is the recommended way. You can install the current version of the plugin and will receive updates. Just follow these simple steps to install the plugin:
+
+1. Navigate to the plugin repository manager (`File` - `Search Plug-Ins Online` - `Manage Plug-In Repositories`)
+2. Add a new repository by inserting the following url: ${pluginRepositoryUrl}
+3. Go back to the plugin installation
+4. Select and install the ${projectName}
+
+Manual Installation
+---------------------
+You can also directly install the plugin.
+
+1. Download the plugin: [Download](${pluginDownloadUrlRelative})
+2. Open the plugin overview (`File` - `Settings` - `Plugins`)
+3. Select `Install new plug-in`
+4. Choose the downloaded plugin

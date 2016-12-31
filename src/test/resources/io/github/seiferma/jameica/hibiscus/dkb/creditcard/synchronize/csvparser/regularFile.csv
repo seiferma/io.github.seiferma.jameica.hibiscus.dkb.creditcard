@@ -1,0 +1,11 @@
+"Kreditkarte:";"1234********1234 SomeName";
+
+"Von:";"06.09.2016";
+"Bis:";"28.12.2016";
+"Saldo:";"1234.56 EUR";
+"Datum:";"27.12.2016";
+
+"Umsatz abgerechnet und nicht im Saldo enthalten";"Wertstellung";"Belegdatum";"Beschreibung";"Betrag (EUR)";"Ursprünglicher Betrag";
+"Nein";"28.12.2016";"27.12.2016";"Some Retail Store     DESmallVillage";"-123,45";"";
+"Ja";"27.12.2016";"24.12.2016";"An Online Merchant XYZ12";"-12,34";"";
+"Ja";"23.12.2016";"22.12.2016";"Added money to acc";"123,45";"";
