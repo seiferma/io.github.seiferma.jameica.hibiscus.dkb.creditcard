@@ -59,7 +59,7 @@ public class DKBCsvParser {
 		if (!foundSaldo.isPresent()) {
 			throw new IOException("Could not find balance record.");
 		}
-		Pattern saldoPattern = Pattern.compile("(-?[0-9]+).([0-9]{2}) EUR");
+		Pattern saldoPattern = Pattern.compile("(-?[0-9]+).([0-9]{1,2}) EUR");
 		Matcher saldoMatcher = saldoPattern.matcher(foundSaldo.get());
 		if (!saldoMatcher.matches() || saldoMatcher.groupCount() != 2) {
 			throw new IOException("Could not parse saldo.");
@@ -124,7 +124,7 @@ public class DKBCsvParser {
 
 		String amountString = record.get(4);
 		amountString = amountString.replace(".", "");
-		Pattern amountPattern = Pattern.compile("(-?[0-9]+),([0-9]{2})");
+		Pattern amountPattern = Pattern.compile("(-?[0-9]+),([0-9]{1,2})");
 		Matcher amountMatcher = amountPattern.matcher(amountString);
 		if (!amountMatcher.matches() || amountMatcher.groupCount() != 2) {
 			throw new IOException(String.format("Could not parse transaction amount (%s).", amountString));
