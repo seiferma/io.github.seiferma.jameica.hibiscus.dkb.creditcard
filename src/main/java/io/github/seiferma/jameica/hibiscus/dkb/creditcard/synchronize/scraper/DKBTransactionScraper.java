@@ -96,7 +96,7 @@ public class DKBTransactionScraper {
 		foundOption.get().setSelected(true);
 		
 		// select manual search period
-		Optional<HtmlRadioButtonInput> searchPeriodRadioButton = balancesForm.get().getRadioButtonsByName("searchPeriod").stream().filter(r -> "0".equals(r.getValueAttribute())).findFirst();
+		Optional<HtmlRadioButtonInput> searchPeriodRadioButton = balancesForm.get().getRadioButtonsByName("filterType").stream().filter(r -> "DATE_RANGE".equals(r.getValueAttribute())).findFirst();
 		if (!searchPeriodRadioButton.isPresent()) {
 			throw new IllegalStateException("The search period radio button could not be found.");
 		}
