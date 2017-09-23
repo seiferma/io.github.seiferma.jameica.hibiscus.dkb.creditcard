@@ -84,6 +84,33 @@ public class DKBCsvParserTest {
 
 		assertThat(actualTransactions, is(emptyIterable()));
 	}
+	
+	@Test
+	public void testLeadingZero() throws IOException {
+		String csvString = readFile("leadingZero.csv");
+		subject = new DKBCsvParser(csvString);
+		Iterable<DKBTransaction> actual = subject.getTransactions();
+
+		List<DKBTransaction> expected = new ArrayList<>();
+		expected.add(DKBTransactionImpl.create().setIsBooked(false).setValueDate(createDate(2016, 11, 28))
+				.setBookingDate(createDate(2016, 11, 27)).setDescription("Some Retail Store DESmallVillage")
+				.setAmountInCents(-45).build());
+		expected.add(DKBTransactionImpl.create().setIsBooked(true).setValueDate(createDate(2016, 11, 27))
+				.setBookingDate(createDate(2016, 11, 24)).setDescription("An Online Merchant XYZ12")
+				.setAmountInCents(-4).build());
+		expected.add(DKBTransactionImpl.create().setIsBooked(true).setValueDate(createDate(2016, 11, 23))
+				.setBookingDate(createDate(2016, 11, 22)).setDescription("Added money to acc").setAmountInCents(5)
+				.build());
+
+		assertThat(actual, contains(expected.toArray()));
+	}
+	
+	@Test
+	public void testNegativeBalance() throws IOException {
+		String csvString = readFile("negativeBalance.csv");
+		subject = new DKBCsvParser(csvString);
+		assertThat(subject.getBalanceInCents(), is(-6));
+	}
 
 	private static Date createDate(int year, int month, int day) {
 		return new GregorianCalendar(year, month, day).getTime();

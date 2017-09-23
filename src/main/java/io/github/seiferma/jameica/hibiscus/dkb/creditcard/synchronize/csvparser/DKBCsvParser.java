@@ -64,16 +64,8 @@ public class DKBCsvParser {
 		if (!saldoMatcher.matches() || saldoMatcher.groupCount() != 2) {
 			throw new IOException("Could not parse saldo.");
 		}
-		String eurosString = saldoMatcher.group(1);
-		String centsString = saldoMatcher.group(2);
-
-		try {
-			int euros = Integer.parseInt(eurosString) * 100;
-			int cents = Integer.parseInt(centsString);
-			return euros + (euros < 0 ? -cents : cents);
-		} catch (NumberFormatException e) {
-			throw new IOException("Could not parse balance.", e);
-		}
+		
+		return getCentsFromString(saldoMatcher.group(1), saldoMatcher.group(2));
 	}
 
 	public Date getBalanceDate() throws IOException {
@@ -129,14 +121,8 @@ public class DKBCsvParser {
 		if (!amountMatcher.matches() || amountMatcher.groupCount() != 2) {
 			throw new IOException(String.format("Could not parse transaction amount (%s).", amountString));
 		}
-		int amountInCents;
-		try {
-			int euros = Integer.parseInt(amountMatcher.group(1)) * 100;
-			int cents = Integer.parseInt(amountMatcher.group(2));
-			amountInCents = euros + (euros < 0 ? -cents : cents);
-		} catch (NumberFormatException e) {
-			throw new IOException("Could not parse part of transaction amount.", e);
-		}
+		
+		int amountInCents = getCentsFromString(amountMatcher.group(1), amountMatcher.group(2));
 
 		return DKBTransactionImpl.create().setIsBooked(isBooked).setValueDate(valueDate).setBookingDate(bookingDate)
 				.setDescription(description).setAmountInCents(amountInCents).build();
@@ -180,6 +166,17 @@ public class DKBCsvParser {
 
 	private static CSVFormat createCsvFormat(String lineSeparator) {
 		return CSVFormat.DEFAULT.withDelimiter(';').withRecordSeparator(lineSeparator);
+	}
+	
+	private static int getCentsFromString(String euroString, String centString) throws IOException {
+		boolean negative = euroString.startsWith("-");
+		try {
+			int euros = Math.abs(Integer.parseInt(euroString) * 100);
+			int cents = Integer.parseInt(centString);
+			return (negative ? -1 : 1) * (euros + cents);
+		} catch (NumberFormatException e) {
+			throw new IOException("Could not parse balance.", e);
+		}
 	}
 
 }
