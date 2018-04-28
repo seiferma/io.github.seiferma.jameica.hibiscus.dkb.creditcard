@@ -210,7 +210,7 @@ public class DKBScraperSynchronizeJobKontoauszugImpl extends SynchronizeJobKonto
 	}
 
 	private static String getPin() throws Exception {
-		PINDialog dialog = new PINDialog();
+		PINDialog dialog = new PINDialog("");
 		String pin = (String) dialog.open();
 		return pin;
 	}

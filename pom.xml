@@ -43,8 +43,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>ISO-8859-15</project.build.sourceEncoding>
-		<dependency.jameica.version>2.6.4</dependency.jameica.version>
-		<dependency.hibiscus.version>2.6.19</dependency.hibiscus.version>
+		<dependency.jameica.version>2.6.6</dependency.jameica.version>
+		<dependency.hibiscus.version>2.6.20</dependency.hibiscus.version>
 		
 		<maven.site.deploy.skip>true</maven.site.deploy.skip>
 
@@ -72,7 +72,7 @@
 		<dependency>
 			<groupId>de.willuhn</groupId>
 			<artifactId>jameica</artifactId>
-			<version>${dependency.hibiscus.version}</version>
+			<version>${dependency.jameica.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
