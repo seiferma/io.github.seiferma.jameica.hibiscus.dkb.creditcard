@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.seiferma.jameica.hibiscus</groupId>
 	<artifactId>dkb.creditcard</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.4.0-SNAPSHOT</version>
 	<name>DKB Credit Card Scraper</name>
 	<url>https://seiferma.github.io/io.github.seiferma.jameica.hibiscus.dkb.creditcard</url>
 	<description>This plugin integrates the credit card information of DKB into Hibiscus. Hibiscus is a home banking application that mainly supports HBCI. DKB, however, does not offer access to credit card transactions via standard HBCI protocol. This plugin uses the website to gather this information.</description>
