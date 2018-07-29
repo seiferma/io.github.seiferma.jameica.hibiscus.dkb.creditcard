@@ -111,18 +111,22 @@ public class DKBCsvParserTest {
 		subject = new DKBCsvParser(csvString);
 		assertThat(subject.getBalanceInCents(), is(-6));
 	}
+	
+	@Test
+	public void testNoCentsSaldo() throws IOException {
+		String csvString = readFile("noCentsSaldo.csv");
+		subject = new DKBCsvParser(csvString);
+		assertThat(subject.getBalanceInCents(), is(123400));
+	}
 
 	private static Date createDate(int year, int month, int day) {
 		return new GregorianCalendar(year, month, day).getTime();
 	}
 
 	private static String readFile(String filename) throws IOException {
-		InputStream fileStream = DKBCsvParserTest.class.getClassLoader()
-				.getResourceAsStream(TEST_RESOURCE_BASE_PATH + filename);
-		try {
+		try (InputStream fileStream = DKBCsvParserTest.class.getClassLoader()
+				.getResourceAsStream(TEST_RESOURCE_BASE_PATH + filename)) {
 			return IOUtils.toString(fileStream, "ISO-8859-15");
-		} finally {
-			IOUtils.closeQuietly(fileStream);
 		}
 	}
 }

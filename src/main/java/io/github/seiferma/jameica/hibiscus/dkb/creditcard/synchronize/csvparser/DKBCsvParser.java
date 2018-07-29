@@ -59,13 +59,16 @@ public class DKBCsvParser {
 		if (!foundSaldo.isPresent()) {
 			throw new IOException("Could not find balance record.");
 		}
-		Pattern saldoPattern = Pattern.compile("(-?[0-9]+).([0-9]{1,2}) EUR");
+		Pattern saldoPattern = Pattern.compile("(-?[0-9]+)([.]([0-9]{1,2}))? EUR");
 		Matcher saldoMatcher = saldoPattern.matcher(foundSaldo.get());
-		if (!saldoMatcher.matches() || saldoMatcher.groupCount() != 2) {
+		if (!saldoMatcher.matches()) {
 			throw new IOException("Could not parse saldo.");
 		}
 		
-		return getCentsFromString(saldoMatcher.group(1), saldoMatcher.group(2));
+		String euroString = saldoMatcher.group(1);
+		String centString = saldoMatcher.group(3) == null ? "0" : saldoMatcher.group(3);
+		
+		return getCentsFromString(euroString, centString);
 	}
 
 	public Date getBalanceDate() throws IOException {
