@@ -31,7 +31,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import io.github.seiferma.jameica.hibiscus.dkb.creditcard.synchronize.DKBTransaction;
@@ -144,8 +143,8 @@ public class DKBCsvParser {
 
 	private static int getMetaDataHeaderLength(String csvContent, String lineSeparator) throws IOException {
 		int length = 0;
-		BufferedReader br = new BufferedReader(new StringReader(csvContent));
-		try {
+
+		try (BufferedReader br = new BufferedReader(new StringReader(csvContent))) {
 			for (String line = br.readLine(); line != null; line = br.readLine()) {
 				int numberOfDelimiters = StringUtils.countMatches(line, ';');
 				if (numberOfDelimiters != 0 && numberOfDelimiters != 2) {
@@ -153,9 +152,8 @@ public class DKBCsvParser {
 				}
 				length += line.length() + lineSeparator.length();
 			}
-		} finally {
-			IOUtils.closeQuietly(br);
 		}
+
 		return length;
 	}
 
