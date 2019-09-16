@@ -21,7 +21,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsEmptyIterable.emptyIterable;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,18 +31,17 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import io.github.seiferma.jameica.hibiscus.dkb.creditcard.synchronize.DKBTransaction;
-import io.github.seiferma.jameica.hibiscus.dkb.creditcard.synchronize.csvparser.DKBCsvParser;
 
 public class DKBCsvParserTest {
 
 	private static final String TEST_RESOURCE_BASE_PATH = "io/github/seiferma/jameica/hibiscus/dkb/creditcard/synchronize/csvparser/";
 	private DKBCsvParser subject;
 
-	@Before
+	@BeforeEach
 	public void setup() throws IOException {
 		String csvString = readFile("regularFile.csv");
 		subject = new DKBCsvParser(csvString);
