@@ -56,6 +56,7 @@ public class DKBTransactionScraper {
 	public String getBalancesCsv(String ccNumber, String webUser, String webPin) throws Exception {
 		WebDriverManager.firefoxdriver().setup();
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
+		firefoxOptions.setAcceptInsecureCerts(false);
 		firefoxOptions.setHeadless(true);
 	    WebDriver driver = new FirefoxDriver(firefoxOptions);
 
