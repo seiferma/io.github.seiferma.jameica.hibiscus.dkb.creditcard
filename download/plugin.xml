@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<plugin xmlns="http://www.willuhn.de/schema/jameica-plugin"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.willuhn.de/schema/jameica-plugin http://www.willuhn.de/schema/jameica-plugin-1.0.xsd"
+        name="DKB Credit Card Scraper" version="0.7.0-SNAPSHOT" class="io.github.seiferma.jameica.hibiscus.dkb.creditcard.DKBScraperPlugin">
+
+  <description>This plugin integrates the credit card information of DKB into Hibiscus. Hibiscus is a home banking application that mainly supports HBCI. DKB, however, does not offer access to credit card transactions via standard HBCI protocol. This plugin uses the website to gather this information.</description>
+  <url>https://seiferma.github.io/io.github.seiferma.jameica.hibiscus.dkb.creditcard/download/dkb.creditcard.zip</url>
+  <homepage>https://seiferma.github.io/io.github.seiferma.jameica.hibiscus.dkb.creditcard</homepage>
+  <license>GPL - http://www.gnu.org/copyleft/gpl.html</license>
+
+  <requires jameica="2.8.4+">
+    <import plugin="hibiscus" version="2.8.22+" required="true" />
+  </requires>
+
+  <classfinder>
+    <include>dkb\.creditcard\.jar</include>
+    <include>.*\.class</include>
+  </classfinder>
+
+</plugin>
+
