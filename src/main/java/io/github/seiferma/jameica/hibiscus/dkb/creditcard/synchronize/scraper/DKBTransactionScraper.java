@@ -29,6 +29,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -48,16 +49,22 @@ public class DKBTransactionScraper {
 	private static final String LOGOUT_URL = BASE_URL + "/DkbTransactionBanking/banner.xhtml?$event=logout";
 
 	private final Date fromDate;
+	private final boolean headless;
 
 	public DKBTransactionScraper(Date fromDate) {
+		this(fromDate, true);
+	}
+	
+	public DKBTransactionScraper(Date fromDate, boolean headless) {
 		this.fromDate = fromDate;
+		this.headless = headless;
 	}
 
 	public String getBalancesCsv(String ccNumber, String webUser, String webPin) throws Exception {
 		WebDriverManager.firefoxdriver().setup();
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
 		firefoxOptions.setAcceptInsecureCerts(false);
-		firefoxOptions.setHeadless(true);
+		firefoxOptions.setHeadless(headless);
 	    WebDriver driver = new FirefoxDriver(firefoxOptions);
 
 		try {
@@ -76,6 +83,14 @@ public class DKBTransactionScraper {
 		// try to load balance page
 		webClient.get(BALANCE_URL);
 
+		// accept cookies
+		try {
+			WebElement acceptCookiesButton = webClient.findElement(By.id("popin_tc_privacy_button_2"));			
+			acceptCookiesButton.click();
+		} catch (NoSuchElementException e) {
+			// could not find the cookie accept button, trying to continue
+		}
+		
 		// submit login form
 		WebElement usernameInput = webClient.findElement(By.id("loginInputSelector"));
 		usernameInput.sendKeys(username);
