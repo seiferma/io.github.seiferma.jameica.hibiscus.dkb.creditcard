@@ -45,7 +45,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>ISO-8859-15</project.build.sourceEncoding>
 		<dependency.jameica.version>2.8.4</dependency.jameica.version>
-		<dependency.hibiscus.version>2.8.16</dependency.hibiscus.version>
+		<dependency.hibiscus.version>2.8.22</dependency.hibiscus.version>
 
 		<maven.site.deploy.skip>true</maven.site.deploy.skip>
 
@@ -63,9 +63,33 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-			<id>bintray-seiferma-jameica</id>
-			<name>bintray</name>
-			<url>http://dl.bintray.com/seiferma/jameica</url>
+			<id>github-jameica</id>
+			<name>jameica</name>
+			<url>https://seiferma.github.io/de.willuhn.jameica.maven</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>github-hibiscus</id>
+			<name>hibiscus</name>
+			<url>https://seiferma.github.io/de.willuhn.hibiscus.maven</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>github-jameica-util</id>
+			<name>jameica-util</name>
+			<url>https://seiferma.github.io/de.willuhn.util.maven</url>
+		</repository>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>github-jameica-datasource</id>
+			<name>jameica-datasource</name>
+			<url>https://seiferma.github.io/de.willuhn.datasource.maven</url>
 		</repository>
 	</repositories>
 
